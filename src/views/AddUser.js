@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext } from 'react';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
