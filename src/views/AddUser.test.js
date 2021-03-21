@@ -1,5 +1,5 @@
 import React from 'react';
-import AddUser from './AddUser';
+import AddUser3 from './AddUser';
 import Dashboard from './Dashboard';
 import { screen, fireEvent } from '@testing-library/react';
 import { renderWithProviders } from 'helpers/renderWithThemeProvider';
@@ -8,7 +8,7 @@ describe('Form Field', () => {
   it('Renders the component', () => {
     renderWithProviders(
       <>
-        <AddUser />
+        <AddUser3 />
         <Dashboard />
       </>
     );
