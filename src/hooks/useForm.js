@@ -10,7 +10,6 @@ const actionTypes = {
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.inputChange:
-      console.log(action);
       return {
         ...state,
         [action.field]: action.value,
