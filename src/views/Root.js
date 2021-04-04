@@ -5,7 +5,6 @@ import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
-import AddUser from 'views/AddUser';
 import Dashboard from 'views/Dashboard';
 
 const Root = () => {
@@ -18,9 +17,6 @@ const Root = () => {
             <Switch>
               <Route exact path="/">
                 <Redirect to="/group" />
-              </Route>
-              <Route path="/add-user">
-                <AddUser />
               </Route>
               <Route path="/group/:id?">
                 <Dashboard />
