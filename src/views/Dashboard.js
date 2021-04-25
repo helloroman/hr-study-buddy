@@ -6,15 +6,15 @@ import { useStudents } from 'hooks/useStudents';
 import { GroupWrapper, TitleWrapper, Wrapper } from 'views/Dashboard.styles';
 import { Title } from 'components/atoms/Title/Title';
 import useModal from 'components/organisms/Modal/useModal';
-import { StyledAverage } from 'components/molecules/StudentsListItem/StudentsListItem.styles';
 import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
+import Modal from 'components/organisms/Modal/Modal';
 
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
   const [currentStudent, setCurrentStudent] = useState(null);
   const { getGroups, getStudentById } = useStudents();
   const { id } = useParams();
-  const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
 
   useEffect(() => {
     (async () => {
