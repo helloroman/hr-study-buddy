@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { ModalWrapper } from 'components/organisms/Modal/Modal.styles';
+import { ModalBackground, ModalWrapper } from 'components/organisms/Modal/Modal.styles';
 import { Button } from 'components/atoms/Button/Button';
 
 const modalContainer = document.getElementById('modal-container');
@@ -15,10 +15,12 @@ const Modal = ({ handleClose, children }) => {
   }, [modalNode]);
 
   return ReactDOM.createPortal(
-    <ModalWrapper>
-      {children}
-      <Button onClick={handleClose}>Close</Button>
-    </ModalWrapper>,
+    <ModalBackground>
+      <ModalWrapper>
+        {children}
+        <Button onClick={handleClose}>Close</Button>
+      </ModalWrapper>
+    </ModalBackground>,
     modalNode
   );
 };

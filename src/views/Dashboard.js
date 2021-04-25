@@ -47,6 +47,9 @@ const Dashboard = () => {
         <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
         {isOpen ? (
           <Modal handleClose={handleCloseModal}>
+            {/* Uwaga! Prop student został zmieniony na potrzeby
+            stylowania modala – aplikacja reactowa będzie rzucać
+            błędem, który naprawimy w odcinku o MSW/data */}
             <StudentDetails student={currentStudent} />
           </Modal>
         ) : null}
