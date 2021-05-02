@@ -18,7 +18,7 @@ export const useStudents = () => {
     } catch (e) {
       console.log(e);
     }
-  });
+  }, []);
 
   const getStudentsByGroup = useCallback(async (groupId) => {
     try {
