@@ -2,7 +2,7 @@ import React from 'react';
 import { Title } from 'components/atoms/Title/Title';
 import { Average } from 'components/atoms/Average/Average';
 import {
-  StyledAverage,
+  BigAverage,
   StyledDetails,
   StyledInfo,
   StyledLabel,
@@ -13,7 +13,7 @@ import {
 const StudentDetails = ({ student }) => {
   return (
     <Wrapper>
-      <StyledAverage value={student.average}>{student.average}</StyledAverage>
+      <BigAverage value={student.average}>{student.average}</BigAverage>
       <Title isBig>{student.name}</Title>
       <StyledDetails>
         <StyledLabel>Course:</StyledLabel>

@@ -6,15 +6,38 @@ import { useStudents } from 'hooks/useStudents';
 import { GroupWrapper, TitleWrapper, Wrapper } from 'views/Dashboard.styles';
 import { Title } from 'components/atoms/Title/Title';
 import useModal from 'components/organisms/Modal/useModal';
-import { StyledAverage } from 'components/molecules/StudentsListItem/StudentsListItem.styles';
 import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
+import Modal from 'components/organisms/Modal/Modal';
+
+const mockStudent = {
+  id: '1',
+  name: 'Adam Romański',
+  attendance: '39%',
+  average: '2.3',
+  group: 'A',
+  course: 'Business Philosophy',
+  grades: [
+    {
+      subject: 'Business Philosophy',
+      average: '3.3',
+    },
+    {
+      subject: 'Marketing',
+      average: '4.7',
+    },
+    {
+      subject: 'Modern Economy',
+      average: '2.5',
+    },
+  ],
+};
 
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
   const [currentStudent, setCurrentStudent] = useState(null);
   const { getGroups, getStudentById } = useStudents();
   const { id } = useParams();
-  const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
 
   useEffect(() => {
     (async () => {
@@ -45,14 +68,9 @@ const Dashboard = () => {
       </TitleWrapper>
       <GroupWrapper>
         <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
-        {isOpen ? (
-          <Modal handleClose={handleCloseModal}>
-            {/* Uwaga! Prop student został zmieniony na potrzeby
-            stylowania modala – aplikacja reactowa będzie rzucać
-            błędem, który naprawimy w odcinku o MSW/data */}
-            <StudentDetails student={currentStudent} />
-          </Modal>
-        ) : null}
+        <Modal isOpen={isOpen} handleClose={handleCloseModal}>
+          <StudentDetails student={mockStudent} />
+        </Modal>
       </GroupWrapper>
     </Wrapper>
   );
