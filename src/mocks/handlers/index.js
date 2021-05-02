@@ -1,11 +1,9 @@
 import { rest } from 'msw';
-import { students } from 'mocks/data/students';
-import { groups } from 'mocks/data/groups';
 import { db } from 'mocks/db';
 
 export const handlers = [
   rest.get('/groups', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ groups }));
+    return res(ctx.status(200), ctx.json({ groups: db.group.getAll() }));
   }),
   rest.get('/groups/:id', (req, res, ctx) => {
     if (req.params.id) {
@@ -25,9 +23,9 @@ export const handlers = [
     }
 
     return res(
-      ctx.status(200),
+      ctx.status(404),
       ctx.json({
-        students,
+        error: 'Please provide the group ID',
       })
     );
   }),
@@ -59,7 +57,7 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        students,
+        students: db.student.getAll(),
       })
     );
   }),

@@ -19,6 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     (async () => {
       const groups = await getGroups();
+      console.log(groups);
       setGroups(groups);
     })();
   }, [getGroups]);
@@ -36,9 +37,9 @@ const Dashboard = () => {
       <TitleWrapper>
         <Title as="h2">Group {id}</Title>
         <nav>
-          {groups.map((group) => (
-            <Link key={group} to={`/group/${group}`}>
-              {group}{' '}
+          {groups.map(({ id }) => (
+            <Link key={id} to={`/group/${id}`}>
+              {id}{' '}
             </Link>
           ))}
         </nav>
