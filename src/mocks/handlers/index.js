@@ -1,14 +1,19 @@
 import { rest } from 'msw';
-import { students } from 'mocks/data/students';
-import { groups } from 'mocks/data/groups';
+import { db } from 'mocks/db';
 
 export const handlers = [
   rest.get('/groups', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ groups }));
+    return res(ctx.status(200), ctx.json({ groups: db.group.getAll() }));
   }),
   rest.get('/groups/:id', (req, res, ctx) => {
     if (req.params.id) {
-      const matchingStudents = students.filter((student) => student.group === req.params.id);
+      const matchingStudents = db.student.findMany({
+        where: {
+          group: {
+            equals: req.params.id,
+          },
+        },
+      });
       return res(
         ctx.status(200),
         ctx.json({
@@ -18,15 +23,21 @@ export const handlers = [
     }
 
     return res(
-      ctx.status(200),
+      ctx.status(404),
       ctx.json({
-        students,
+        error: 'Please provide the group ID',
       })
     );
   }),
   rest.get('/students/:id', (req, res, ctx) => {
     if (req.params.id) {
-      const matchingStudent = students.find((student) => student.id === req.params.id);
+      const matchingStudent = db.student.findFirst({
+        where: {
+          id: {
+            equals: req.params.id,
+          },
+        },
+      });
       if (!matchingStudent) {
         return res(
           ctx.status(404),
@@ -46,14 +57,18 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        students,
+        students: db.student.getAll(),
       })
     );
   }),
   rest.post('/students/search', (req, res, ctx) => {
-    const matchingStudents = req.body.searchPhrase
-      ? students.filter((student) => student.name.toLowerCase().includes(req.body.searchPhrase.toLowerCase()))
-      : [];
+    const matchingStudents = db.student.findMany({
+      where: {
+        name: {
+          contains: req.body.searchPhrase,
+        },
+      },
+    });
     return res(
       ctx.status(200),
       ctx.json({
