@@ -1,7 +1,6 @@
 import { setupWorker } from 'msw';
 import { handlers } from 'mocks/handlers';
 import { db } from 'mocks/db';
-import faker from 'faker';
 
 export const worker = setupWorker(...handlers);
 
@@ -15,6 +14,8 @@ const seed = () => {
   db.group.create({
     id: 'C',
   });
+
+  db.teacher.create();
 
   for (let i = 0; i < 15; i++) {
     db.student.create();
