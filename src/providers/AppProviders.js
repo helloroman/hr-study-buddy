@@ -4,15 +4,18 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { AuthProvider } from 'hooks/useAuth';
+import { ErrorProvider } from 'hooks/useError';
 
 const AppProviders = ({ children }) => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <GlobalStyle />
-          {children}
-        </AuthProvider>
+        <ErrorProvider>
+          <AuthProvider>
+            <GlobalStyle />
+            {children}
+          </AuthProvider>
+        </ErrorProvider>
       </ThemeProvider>
     </Router>
   );
