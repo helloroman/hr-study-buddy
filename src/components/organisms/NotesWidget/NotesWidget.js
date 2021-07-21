@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Note from 'components/molecules/Note/Note';
 import { useSelector } from 'react-redux';
 import { NotesWrapper, WidgetHandler, Wrapper } from 'components/organisms/NotesWidget/NotesWidget.styles';

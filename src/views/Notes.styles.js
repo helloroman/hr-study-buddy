@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   padding: 30px;
 `;
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   padding: 40px;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 25px;
