@@ -12,12 +12,7 @@ const Notes = () => {
     formState: { errors },
   } = useForm();
   const { data, isLoading } = useGetNotesQuery();
-  const [addNote, rest] = useAddNoteMutation();
-
-  React.useEffect(() => {
-    console.log(data);
-    console.log(rest);
-  }, [data, rest]);
+  const [addNote] = useAddNoteMutation();
 
   const handleAddNote = ({ title, content }) => {
     addNote({ title, content });

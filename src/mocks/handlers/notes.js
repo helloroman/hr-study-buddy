@@ -32,4 +32,29 @@ export const notes = [
       })
     );
   }),
+  rest.delete('/notes', (req, res, ctx) => {
+    if (req.body.id) {
+      const removedNote = db.note.delete({
+        where: {
+          id: {
+            equals: req.body.id,
+          },
+        },
+      });
+
+      return res(
+        ctx.status(200),
+        ctx.json({
+          removedNote,
+        })
+      );
+    }
+
+    return res(
+      ctx.status(400),
+      ctx.json({
+        error: 'Please provide ID of removed note',
+      })
+    );
+  }),
 ];
