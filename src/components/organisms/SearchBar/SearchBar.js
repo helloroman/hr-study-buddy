@@ -17,6 +17,7 @@ export const SearchBar = () => {
   const { isOpen, getMenuProps, getInputProps, getComboboxProps, highlightedIndex, getItemProps } = useCombobox({
     items: matchingStudents,
     onInputValueChange: getMatchingStudents,
+    itemToString: (item) => (item ? item.name : ''),
   });
 
   return (
@@ -32,7 +33,7 @@ export const SearchBar = () => {
         <SearchResults isVisible={isOpen && matchingStudents.length > 0} {...getMenuProps()} aria-label="results">
           {isOpen &&
             matchingStudents.map((item, index) => (
-              <SearchResultsItem isHighlighted={highlightedIndex === index} {...getItemProps({ item, index })} key={item.id}>
+              <SearchResultsItem isHighlighted={highlightedIndex === index} {...getItemProps({ item: 'Mordo', index })} key={item.id}>
                 {item.name}
               </SearchResultsItem>
             ))}
